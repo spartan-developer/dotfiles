@@ -1,0 +1,78 @@
+"""""""""" VUNDLE 
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-coffee-script'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'majutsushi/tagbar'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'xoria256.vim'
+Bundle 'matschaffer/vim-islime2'
+Bundle 'jpalardy/vim-slime'
+Bundle 'paredit.vim'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'scrooloose/nerdcommenter'
+filetype plugin indent on
+"""""""""""""""""""""""""""""""""""
+
+syntax enable
+set noswapfile
+set background=dark
+colorscheme solarized
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set backspace=indent,eol,start
+
+let mapleader=';'
+imap <leader>s <esc>:w<cr>
+nmap <leader>s :w<cr>
+nmap <leader>n :NERDTreeToggle<cr><c-w>=
+map <leader>f :NERDTreeFind<cr>
+nmap <space> <leader><leader>w
+nmap <leader><space> <leader><leader>b
+nmap <leader>t :TagbarToggle<cr>
+
+let g:ctrlp_extensions = ['tag']
+
+function! ToggleLineNums()
+  if (&number == 1)
+    set nonumber
+  else
+    set number
+  endif
+endfunction
+nmap # :call ToggleLineNums()<cr>
+
+"""""""""" vim-slime
+let g:slime_target = 'tmux'
+map <leader>r <C-c><C-c>
+
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_error_symbol = '✗✗'
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+    \ 'ctagsbin' : 'coffeetags',
+    \ 'ctagsargs' : '--include-vars',
+    \ 'kinds' : [
+      \ 'f:functions',
+      \ 'o:object',
+    \ ],
+    \ 'sro' : ".",
+    \ 'kind2scope' : {
+      \ 'f' : 'object',
+      \ 'o' : 'object',
+    \ }
+  \ }
+endif
