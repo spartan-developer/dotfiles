@@ -46,11 +46,11 @@ plugins=(
 	nvm node npm
 	gem bundler
   scala sbt
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby 2.0.0
+source /usr/local/share/chruby/chruby.sh
 
 # Customize to your needs...
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
